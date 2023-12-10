@@ -22,7 +22,7 @@ room_to_floor_and_elevator = {
     '2F Elevator': ('2F', '2F Elevator'),
     '3F Elevator': ('3F', '3F Elevator'),
 }
-def dijkstra_3d(graph, start, end):
+def dijkstra(graph, start, end):
     heap = [(0, start)]
     distances = {node: float('infinity') for node in graph}
     distances[start] = 0
@@ -66,14 +66,14 @@ def find_shortest_path(graph, exhibition_rooms, start_point, end_point):
             if room_to_floor_and_elevator[current_point][0] != room_to_floor_and_elevator[room][0]:
                 # 같은 층에 없는 경우, 엘리베이터를 이용
                 elevator = room_to_floor_and_elevator[room][1]
-                distance, _ = dijkstra_3d(graph, current_point, elevator)
+                distance, _ = dijkstra(graph, current_point, elevator)
                 total_distance += distance if distance is not None else float('infinity')
                 current_point = elevator
                 if elevator not in current_path:
                     current_path.append(elevator)
 
             # 이제 해당 방으로 이동
-            distance, _ = dijkstra_3d(graph, current_point, room)
+            distance, _ = dijkstra(graph, current_point, room)
             if distance is None:  # 경로가 존재하지 않으면 계산을 중단
                 break
             total_distance += distance
@@ -85,7 +85,7 @@ def find_shortest_path(graph, exhibition_rooms, start_point, end_point):
             if room_to_floor_and_elevator[current_point][0] != room_to_floor_and_elevator[end_point][0]:
                 # 현재 위치와 끝점이 같은 층에 없는 경우, 엘리베이터를 이용
                 elevator = room_to_floor_and_elevator[end_point][1]
-                distance, _ = dijkstra_3d(graph, current_point, elevator)
+                distance, _ = dijkstra(graph, current_point, elevator)
                 total_distance += distance if distance is not None else float('infinity')
                 current_point = elevator
                 if elevator not in current_path:
@@ -93,7 +93,7 @@ def find_shortest_path(graph, exhibition_rooms, start_point, end_point):
 
             # 이제 끝점으로 이동 / 시작점 종료점 중복 제거
             if current_point != end_point:
-                distance, _ = dijkstra_3d(graph, current_point, end_point)
+                distance, _ = dijkstra(graph, current_point, end_point)
                 total_distance += distance if distance is not None else float('infinity')
                 if end_point not in current_path:
                     current_path.append(end_point)
@@ -143,4 +143,3 @@ else:
         print(f"최단 거리(관람시간 포함): {shortest_distance}")
     else:
         print("전시실을 모두 관람하는 경로가 존재하지 않습니다.")
-
