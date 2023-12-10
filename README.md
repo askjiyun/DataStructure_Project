@@ -38,7 +38,9 @@ https://dhalsdl12.tistory.com/17
 
 ![museum3F](https://github.com/askjiyun/DataStructure_Project/assets/104126233/58ac0b8b-2597-40b9-9398-7d373dfb0907)
 
-층별 도면과 실제 방문 당시 전시 중이었던 작품들 데이터 수집하여 문제 설정에 맞는 새로운 Graph 생성
+층별 도면과 실제 방문 당시 전시 중이었던 작품들 사진 데이터 수집하여 문제 설정에 맞는 새로운 Graph 생성
+수집한 사진 데이터 파일 업로드 
+
 1층 전시실 : A Room으로 설정 ( 20작품 전시 )
 2층 천경자 전시실 : B Room  (27개 작품)
 2층 가나아트 컬렉션 전시실 : C Room -> 방문 당시 7080 도시현실 전시 중 (17개 작품) 
